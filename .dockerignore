@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+*.env
+
+# NPM deps
+node_modules
+
+# Build
+coverage
+dist
+docs
+public
+
+# Scripts
+scripts
+
+# README
+README.md
+
+# Travis
+.travis.yml

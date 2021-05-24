@@ -1,0 +1,9 @@
+# build artefacts
+dist/*
+coverage/*
+docs/*
+public/*
+# data definition files
+**/*.d.ts
+# custom definition files
+/src/types/

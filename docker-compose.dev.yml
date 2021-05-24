@@ -1,0 +1,23 @@
+version: '3.8'
+# Development compose file
+services:
+  release_bot:
+    # Re-use current image in different modes
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+      args:
+        - WORKDIR=${WORKDIR}
+    # Expose debug port
+    ports:
+      - 9229:9229
+    environment:
+      - EXEC_MODE=docker
+    env_file: development.env
+    volumes:
+      - ./src:${WORKDIR}/src
+      - ./test:${WORKDIR}/test
+      - ./node_modules:${WORKDIR}/node_modules
+      - ./dist:${WORKDIR}/dist
+      - ./logs:${WORKDIR}/logs
+    command: npm run ${RUN_MODE}

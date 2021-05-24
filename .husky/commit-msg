@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+# Do not allow commits out of project convention
+npx --no-install commitlint --edit "$1"

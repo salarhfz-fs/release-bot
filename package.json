@@ -1,0 +1,75 @@
+{
+  "name": "release-bot",
+  "version": "0.1.0",
+  "description": "Release bot written in Typescript",
+  "main": "index.ts",
+  "scripts": {
+    "build-ts": "tsc",
+    "build": "npm run format && npm run build-ts",
+    "clean": "rm -rf coverage dist docs logs",
+    "cm": "cz",
+    "docs": "npx typedoc",
+    "format-fix": "npm run lint-fix && npm run prettier-fix",
+    "format": "npm run lint && npm run prettier",
+    "lint-fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\"",
+    "prettier-fix": "npx prettier --write .",
+    "prettier": "npx prettier --check .",
+    "start-debug": "nodemon --inspect-brk=0.0.0.0:9229 dist/index.js",
+    "start": "node dist/index.js",
+    "test": "jest --detectOpenHandles --forceExit --coverage --verbose",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-ts\" \"npm run start-debug\"",
+    "watch-node": "while [ ! -f ./dist/index.js ]; do sleep 1; done && nodemon dist/index.js",
+    "watch-test": "npm run test -- --watchAll",
+    "watch-ts": "tsc -w",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "release-bot",
+    "nodejs",
+    "typescript",
+    "docker"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/concurrently": "^6.0.1",
+    "@types/eslint": "^7.2.10",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.3.0",
+    "@types/pino": "^6.3.8",
+    "@types/pino-pretty": "^4.7.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "commitizen": "^4.2.4",
+    "concurrently": "^6.1.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "jest-html-reporter": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "pino-pretty": "^4.8.0",
+    "prettier": "^2.3.0",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.36",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "module-alias": "^2.2.2",
+    "pino": "^6.11.3"
+  },
+  "_moduleAliases": {
+    "@util": "dist/util"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# build artefacts
+dist
+coverage
+docs
+public
+
+# data definition files
+**/*.d.ts
+
+# custom definition files
+/src/types/
+
+# logs
+logs
+
+# Dependency directory
+node_modules
+bower_components
+
+# IDEs
+.idea
+*.iml
+.vscode
+
+# README
+README.md
+
+# Config
+.eslintrc
+*.yml
+jest.config.js
+commitlint.config.js
+*.json
+*.env

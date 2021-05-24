@@ -1,0 +1,14 @@
+FROM node:14-alpine
+
+ARG WORKDIR
+# Create group 'docker_dev_grp' with GID 1400
+RUN addgroup --gid 1400 docker_dev_grp
+# Add current user 'node' to the group
+RUN addgroup node docker_dev_grp
+RUN mkdir -p ${WORKDIR}/node_modules && chown -R node:node ${WORKDIR}
+WORKDIR ${WORKDIR}
+COPY --chown=node:node package*.json ./
+# Set non-root default user
+USER node
+COPY --chown=node:node . .
+CMD ["npm", "run", "watch"]
