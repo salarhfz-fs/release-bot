@@ -42,3 +42,7 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+
+# ignore IDE project configs
+.vscode
+.idea
